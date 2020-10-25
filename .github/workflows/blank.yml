@@ -22,8 +22,15 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
+      - name: Install Kubectl
+        run: |
+          curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
+          chmod +x ./kubectl
+          sudo mv ./kubectl /usr/local/bin/kubectl
+          kubectl version --client
+
       # Drop and Deployment of Infrastructure
-      - name: Run a multi-line script
+      - name: Drop and Deployment of Infrastructure
         run: |
           ./drop-infrastructure.sh
           ./deploy-infrastructure.sh
