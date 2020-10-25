@@ -36,3 +36,9 @@ jobs:
           ./deploy-infrastructure.sh
         env:
           DIGITAL_OCEAN_API_KEY: ${{ secrets.DIGITAL_OCEAN_API_KEY }}
+
+      # Retrieve Kubernetes Client ID and fetch kubeconfig
+      - name: Configure Kubectl
+        run: ./config-kubectl.sh
+        env:
+          DIGITAL_OCEAN_API_KEY: ${{ secrets.DIGITAL_OCEAN_API_KEY }}
