@@ -38,9 +38,15 @@ jobs:
           DIGITAL_OCEAN_API_KEY: ${{ secrets.DIGITAL_OCEAN_API_KEY }}
 
       # Retrieve Kubernetes Client ID and fetch kubeconfig
+      # Needed to push image to Kubernetes pool later
       - name: Configure Kubectl
         run: ./config-kubectl.sh
         env:
           DIGITAL_OCEAN_API_KEY: ${{ secrets.DIGITAL_OCEAN_API_KEY }}
 
-          
+      # Builds Docker image
+      - name: Build Docker image
+        run: docker build . -t nginx-hello-world
+
+      - name: Login to Docker hub
+        run: docker login -u {{ secrets.DOCKER_USER }} -p {{ secrets.DOCKER_PASSWORD}}
