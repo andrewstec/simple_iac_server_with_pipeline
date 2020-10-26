@@ -1,6 +1,6 @@
 FROM nginx:alpine
 
-EXPOSE 8080
+EXPOSE 80
 EXPOSE 443
 
 COPY default.conf /etc/nginx/conf/nginx.conf
