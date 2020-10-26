@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-hello-world
+  labels:
+    app: nginx-hello-world
+spec:
+  containers:
+  - name: nginx-hello-world
+    image: steca/nginx-hello-world:latest
+    ports:
+        - containerPort: 80
+          name: http
+          protocol: TCP
