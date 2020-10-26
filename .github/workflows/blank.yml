@@ -29,14 +29,6 @@ jobs:
           sudo mv ./kubectl /usr/local/bin/kubectl
           kubectl version --client
 
-      # Drop and Deployment of Infrastructure
-      - name: Drop and Deployment of Infrastructure
-        run: |
-          ./drop-infrastructure.sh
-          ./deploy-infrastructure.sh
-        env:
-          DIGITAL_OCEAN_API_KEY: ${{ secrets.DIGITAL_OCEAN_API_KEY }}
-
       # Retrieve Kubernetes Client ID and fetch kubeconfig
       # Needed to push image to Kubernetes pool later
       - name: Configure Kubectl
@@ -46,10 +38,21 @@ jobs:
 
       # Builds Docker image
       - name: Build Docker image
-        run: docker build . -t nginx-hello-world
+        run: docker build . -t steca/nginx-hello-world
 
       - name: Login to Docker hub
         uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Pushes Docker image to Docker hub
+        run: docker push steca/nginx-hello-world
+
+      # Drop and Deployment of Infrastructure
+      - name: Drop and Deployment of Infrastructure
+      run: |
+        ./drop-infrastructure.sh
+        ./deploy-infrastructure.sh
+      env:
+        DIGITAL_OCEAN_API_KEY: ${{ secrets.DIGITAL_OCEAN_API_KEY }}
