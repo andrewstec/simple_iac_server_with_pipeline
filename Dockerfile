@@ -1,7 +1,7 @@
 FROM nginx:alpine
 
-COPY default.conf /etc/nginx/conf.d/default.conf
-COPY hello-world.index.html /usr/share/nginx/html
+COPY default.conf /etc/nginx/conf/nginx.conf
+COPY hello-world.index.html /usr/share/nginx/html/index.html
 
 ## May need nginx ingress for kubernetes
 # Issue: https://www.digitalocean.com/community/questions/use-load-balancer-with-let-s-encrypt-in-digitalocean-kubernetes
