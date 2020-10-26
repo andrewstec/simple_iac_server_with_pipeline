@@ -30,12 +30,12 @@ jobs:
           kubectl version --client
 
       # Drop and Deployment of Infrastructure
-      - name: Drop and Deployment of Infrastructure
-        run: |
-          ./drop-infrastructure.sh
-          ./deploy-infrastructure.sh
-        env:
-          DIGITAL_OCEAN_API_KEY: ${{ secrets.DIGITAL_OCEAN_API_KEY }}
+      # - name: Drop and Deployment of Infrastructure
+      #   run: |
+      #     ./drop-infrastructure.sh
+      #     ./deploy-infrastructure.sh
+      #   env:
+      #     DIGITAL_OCEAN_API_KEY: ${{ secrets.DIGITAL_OCEAN_API_KEY }}
 
       # Retrieve Kubernetes Client ID and fetch kubeconfig
       # Needed to push image to Kubernetes pool later
