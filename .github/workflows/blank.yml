@@ -51,8 +51,8 @@ jobs:
 
       # Drop and Deployment of Infrastructure
       - name: Drop and Deployment of Infrastructure
-      run: |
-        ./drop-infrastructure.sh
-        ./deploy-infrastructure.sh
-      env:
-        DIGITAL_OCEAN_API_KEY: ${{ secrets.DIGITAL_OCEAN_API_KEY }}
+        run: |
+          ./drop-infrastructure.sh
+          ./deploy-infrastructure.sh
+        env:
+          DIGITAL_OCEAN_API_KEY: ${{ secrets.DIGITAL_OCEAN_API_KEY }}
